@@ -1,0 +1,48 @@
+# Site settings
+baseurl = "http://dominionized.github.io/anonymoustre/"
+languageCode = "fr-CA"
+title = "Anonymoustre"
+theme = "hugo-cactus-theme"
+# Enter your tracking code to enable Google Analytics
+googleAnalytics = ""
+# Disable comments by leaving disqusShortname empty
+disqusShortname = ""
+
+[params]
+	name = "Anonymoustre"
+	description = ""
+	bio = "Projet de recherche très épique."
+	# Enter optionally your twitter account
+	twitter = ""
+	enableRSS = false
+
+	# The variables below are optionally too and can be used to
+	# translate or customize each string of the theme.
+
+	# Navigation links
+	home = "Accueil"
+	about = "À propos"
+	subscribe = ""
+	# Pagination links
+	olderPosts = "Avancer"
+	newerPosts = "Reculer"
+	readMore = "En savoir plus"
+	copyright = ""
+	# Sharing options and author information in posts
+	aboutAuthor = ""
+	tweet = ""
+	share = ""
+	# 404 page
+	title404 = ""
+	subtitle404 = ""
+
+    # Social icons style - circle, rounded, or empty
+    socialIconStyle = "circle"
+
+# Add additional social link entries underneath
+[social]
+    twitter  = "https://www.twitter.com/"
+    facebook = "https://www.facebook.com/"
+    github   = "https://www.github.com/"
+    dribble  = "https://www.dribbble.com/"
+

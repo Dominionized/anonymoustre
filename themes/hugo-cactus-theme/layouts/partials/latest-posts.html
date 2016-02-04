@@ -1,0 +1,17 @@
+<ul id="post-list" class="archive readmore">
+    <h3>{{ with .Site.Params.readMore }}{{ . }}{{ else }}Read more{{ end }}</h3>
+    {{ range first 10 .Site.Pages }}
+    {{ $url := replace .Permalink .Site.BaseURL "" }}
+        {{ if and (ne $url "about/") }}
+        <li>
+            <a href="{{ .Permalink }}">{{ .Title }}
+            	<aside class="dates">
+            		{{ .Date.Day }}
+            		{{ index $.Site.Data.months (printf "%d" .Date.Month) }}
+            		{{ .Date.Year }}
+            	</aside>
+            </a>
+        </li>
+        {{ end }}
+   {{ end }}
+</ul>
