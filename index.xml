@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Anonymoustre</title>
+    <link>http://dominionized.github.io/anonymoustre/</link>
+    <description>Recent content on Anonymoustre</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr-CA</language>
+    <lastBuildDate>Mon, 01 Feb 2016 15:14:09 -0500</lastBuildDate>
+    <atom:link href="http://dominionized.github.io/anonymoustre/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>L&#39;équipe des Cucurbitacées</title>
+      <link>http://dominionized.github.io/anonymoustre/about/</link>
+      <pubDate>Mon, 01 Feb 2016 15:14:09 -0500</pubDate>
+      
+      <guid>http://dominionized.github.io/anonymoustre/about/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
