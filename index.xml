@@ -6,8 +6,27 @@
     <description>Recent content on Anonymoustre</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-CA</language>
-    <lastBuildDate>Mon, 01 Feb 2016 15:14:09 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 04 Feb 2016 18:08:14 -0500</lastBuildDate>
     <atom:link href="http://dominionized.github.io/anonymoustre/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Semaine 3</title>
+      <link>http://dominionized.github.io/anonymoustre/post/semaine_3/</link>
+      <pubDate>Thu, 04 Feb 2016 18:08:14 -0500</pubDate>
+      
+      <guid>http://dominionized.github.io/anonymoustre/post/semaine_3/</guid>
+      <description>&lt;p&gt;Cette semaine, nous avons principalement travaillé sur les quatre laboratoires
+sur Packet Tracer. Nous avons également mis en ligne le blogue, sur lequel sont
+affichés les journaux de bord pour chaque semaine.&lt;/p&gt;
+
+&lt;p&gt;Nous avons commencé à expérimenter avec l&amp;rsquo;API de Shodan.io en Python 3. Nous
+avons déjà un
+(&lt;a href=&#34;https://github.com/dominionized/anonymoustre&#34;&gt;dépôt de code sur GitHub&lt;/a&gt;)
+contenant une architecture de base pour démarrer notre projet de recherche.
+L&amp;rsquo;avancement du projet reste encore assez stagnant, mais nous prévoyons
+travailler cette fin de semaine afin d&amp;rsquo;accélérer la cadence.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>L&#39;équipe Anonymoustre</title>
