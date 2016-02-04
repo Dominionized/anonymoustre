@@ -21,7 +21,7 @@ affichés les journaux de bord pour chaque semaine.&lt;/p&gt;
 
 &lt;p&gt;Nous avons commencé à expérimenter avec l&amp;rsquo;API de Shodan.io en Python 3. Nous
 avons déjà un
-(&lt;a href=&#34;https://github.com/dominionized/anonymoustre&#34;&gt;dépôt de code sur GitHub&lt;/a&gt;)
+&lt;a href=&#34;https://github.com/dominionized/anonymoustre&#34;&gt;dépôt de code sur GitHub&lt;/a&gt;
 contenant une architecture de base pour démarrer notre projet de recherche.
 L&amp;rsquo;avancement du projet reste encore assez stagnant, mais nous prévoyons
 travailler cette fin de semaine afin d&amp;rsquo;accélérer la cadence.&lt;/p&gt;
