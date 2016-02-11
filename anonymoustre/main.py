@@ -5,23 +5,13 @@ import pprint
 from functools import reduce
 
 
+pp = pprint.PrettyPrinter(indent=2)
+
 def main():
-    api = shodan.Shodan(api_key.SHODAN)
-    # Wrap the request in a try/ except block to catch errors
-    try:
-        # Search Shodan
-        results = api.search('apache')
-
-        # Show the results
-        print('Results found: %s' % results['total'])
-        for result in results['matches']:
-            print('IP: %s' % result['ip_str'])
-            print(result['data'])
-            print('')
-
-    except shodan.APIError as e:
-        print('Error: %s' % e)
-
+    ips = get_some_ips()
+    query_google_api(ips)
+    pp.pprint(ips)
+    #pp.pprint(query_google_api([res['ip_str'] for res in results['matches']]))
 
 def query_google_api(ip_list):
     url = "https://sb-ssl.google.com/safebrowsing/api/lookup"
@@ -33,18 +23,30 @@ def query_google_api(ip_list):
     }
     req_body = str(len(ip_list)) + "\n" + reduce(lambda x, y: x+"\n"+y, ip_list)
 
-    print(req_body)
-
     r = requests.post(url, params=url_params, data=req_body)
 
     print(r.status_code)
     print(r.text)
 
     if r.status_code == 204:
-        return # TODO change this
+        return [{"unwanted_score": 0, "malware_score": 0, "phishing_score": 0} for i in range(len(ip_list))]
 
 def assoc_score(ip_list):
-    return map(lambda ip: (ip, 100), ip_list)
+    return list(map(lambda ip: {
+        "ip": ip,
+        "malware_score": 100,
+        "phishing_score": 100,
+        "unwanted_score": 100 }, ip_list))
+
+def get_some_ips():
+    req = requests.get("https://zeustracker.abuse.ch/blocklist.php?download=badips")
+    return [line for line in req.text.split('\n') if line and line[0].isdigit()]
+
+def combine_scores(scores1, scores2):
+    for e1, e2 in zip(scores1, scores2):
+        print(e1)
+        print(e2)
+        # TODO : change this
 
 if __name__ == "__main__":
-    pprint(assoc_score(["192.168.1.1", "192.168.1.2", "192.168.0.43"]))
+    main()
