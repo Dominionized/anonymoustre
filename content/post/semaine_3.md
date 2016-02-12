@@ -1,6 +1,6 @@
 +++
 date = "2016-02-04T18:08:14-05:00"
-description = ""
+description = "Collecte d’informations et brainstorming"
 title = "Semaine 3"
 
 +++

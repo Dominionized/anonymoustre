@@ -1,6 +1,6 @@
 +++
 date = "2016-01-28T17:46:01-05:00"
-description = ""
+description = "Organisation et évaluation des options"
 title = "Semaine 2"
 
 +++

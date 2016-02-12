@@ -1,0 +1,150 @@
+    <!DOCTYPE html>
+<html lang="fr-CA">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Anonymoustre">
+		<meta name="description" content="">
+		<meta name="generator" content="Hugo 0.15" />
+		<title>Semaine 4 &middot; Anonymoustre</title>
+		<link rel="shortcut icon" href="http://dominionized.github.io/anonymoustre/images/favicon.ico">
+		<link rel="stylesheet" href="http://dominionized.github.io/anonymoustre/css/style.css">
+		<link rel="stylesheet" href="http://dominionized.github.io/anonymoustre/css/highlight.css">
+		<link rel="stylesheet" href="http://dominionized.github.io/anonymoustre/css/monosocialiconsfont.css">
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='http://dominionized.github.io/anonymoustre/'> <span class="arrow">←</span>Accueil</a>
+	
+
+	
+		<a href='http://dominionized.github.io/anonymoustre/about'>À propos</a>
+	
+
+	
+</nav>
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>Semaine 4</h1>
+                    <h2 class="headline">
+                        11
+                        février
+                        2016
+                    </h2>
+                </header>
+                <section id="post-body">
+                    <p>Au courant de la semaine, nous avons travaillé principalement avec l&rsquo;API de Google Safe Browsing, qui nous donne accès à un filtre pour des domaines classés comme étant malveillants. Nous avons commencer à écrire un script en Python afin de tester cet outil. Nous espérons pouvoir affecter la métrique qui représente la réputation d&rsquo;une adresse IP à partir du résultat que Google nous retourne (<em>phishing</em>, <em>malware</em> ou <em>unwanted</em>) Le code est disponible directement sur <a href="https://github.com/Dominionized/anonymoustre">GitHub</a>.</p>
+
+<p>Il existe des APIs pour la géolocalisation d&rsquo;adresses IP, tel que <a href="http://freegeoip.net/">freegeoip</a> qui utilise la base de données <a href="http://dev.maxmind.com/geoip/geoip2/geolite2/">GeoLite2</a> pour analyser les requêtes. Nous pensons éventuellement intégrer la géolocalisation dans le calcul de la métrique de sécurité.</p>
+
+<p>Une liste de domaines bloqués pour spam de courriel est disponible sur le portail de <a href="https://meta.wikimedia.org/wiki/Spam_blacklist">Wikimedia</a>. La liste est formattée sous forme d&rsquo;expressions régulières, ce qui pourrait aider pour filtrer des noms de domaine.</p>
+
+<p>Une autre <em>blacklist</em> similaire, cette fois-ci sous forme textuelle est disponible sur <a href="http://www.joewein.de/sw/spam-bl-s.htm">jwSpamSpy</a>.</p>
+
+<p>Des outils semblables sont disponibles sur le portail de <a href="http://www.selectrealsecurity.com/public-block-lists">Select Real Security</a>. Il faudra toutefois faire un tri de ces outils et vérifier qu&rsquo;ils sont bel et bien fiables.</p>
+
+<p><a href="https://portswigger.net/burp/">BurpSuite</a> pourrait être une système de test intéressant à utiliser, si nous trouvons le temps pour automatiser le logiciel. Il nous permettrait de rouler des tests sur des applications web pour trouver des failles potentielles. Si nous ne trouvons pas le temps de mettre en place un tel système, nous pourrions toujours tester la validité des certificats SSL pour les adresses IP. Cette option serait probablement plus rapide à implémenter et nous donnerais une autre métrique à prendre en compte dans le calcul de la réputation d&rsquo;adresses IP.</p>
+
+<p>Nous avons fait un essai du programme <a href="https://www.paterva.com/web6/">Maltego</a> qui pourrait nous être utile pour faire de la collecte d&rsquo;informations. Le logiciel, étant très visuel, pourrait également être utilisé comme outil de présentation (merci à François Gagnon pour la référence).</p>
+
+<p>Nous avons d&rsquo;ailleurs envoyer un message à François Gagnon en date du 11 février 2016 pour demander s&rsquo;il était possible d&rsquo;avoir une banque d&rsquo;adresses IP avec des métadonnées.</p>
+
+<p>Pour terminer, nous sommes en légèrement en retard présentement par rapport au plan de travail que nous avons mis en place à la première semaine du projet de recherche. Il faudra porter attention à la progression générale du projet au cours des prochains jours et trouver un moyen de corriger la situation au besoin.</p>
+
+                </section>
+            </article>
+            <footer id="post-meta" class="clearfix">
+                
+                        <img class="avatar" src="http://dominionized.github.io/anonymoustre/images/avatar.svg">
+                        <div>
+                            <span class="dark">Anonymoustre</span>
+                            <span></span>
+                        </div>
+                    
+                <section id="sharing">
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fdominionized.github.io%2fanonymoustre%2fpost%2fsemaine_4%2f - Semaine%204 "><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Partager</span>
+</a>
+
+                </section>
+            </footer>
+
+            
+
+            <ul id="post-list" class="archive readmore">
+    <h3>En savoir plus</h3>
+    
+    
+        
+        <li>
+            <a href="http://dominionized.github.io/anonymoustre/post/semaine_4/">Semaine 4
+            	<aside class="dates">
+            		11
+            		février
+            		2016
+            	</aside>
+            </a>
+        </li>
+        
+   
+    
+        
+        <li>
+            <a href="http://dominionized.github.io/anonymoustre/post/semaine_3/">Semaine 3
+            	<aside class="dates">
+            		4
+            		février
+            		2016
+            	</aside>
+            </a>
+        </li>
+        
+   
+    
+        
+   
+    
+        
+        <li>
+            <a href="http://dominionized.github.io/anonymoustre/post/semaine_2/">Semaine 2
+            	<aside class="dates">
+            		28
+            		janvier
+            		2016
+            	</aside>
+            </a>
+        </li>
+        
+   
+</ul>
+            <footer id="footer">
+    <p class="small">
+    
+        © Copyright 2016 Anonymoustre
+    
+    </p>
+</footer>
+
+        </section>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://dominionized.github.io/anonymoustre/js/main.js"></script>
+<script src="http://dominionized.github.io/anonymoustre/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+    </body>
+</html>

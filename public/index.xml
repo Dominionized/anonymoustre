@@ -6,8 +6,34 @@
     <description>Recent content on Anonymoustre</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-CA</language>
-    <lastBuildDate>Thu, 04 Feb 2016 18:08:14 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 11 Feb 2016 16:45:38 -0500</lastBuildDate>
     <atom:link href="http://dominionized.github.io/anonymoustre/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Semaine 4</title>
+      <link>http://dominionized.github.io/anonymoustre/post/semaine_4/</link>
+      <pubDate>Thu, 11 Feb 2016 16:45:38 -0500</pubDate>
+      
+      <guid>http://dominionized.github.io/anonymoustre/post/semaine_4/</guid>
+      <description>&lt;p&gt;Au courant de la semaine, nous avons travaillé principalement avec l&amp;rsquo;API de Google Safe Browsing, qui nous donne accès à un filtre pour des domaines classés comme étant malveillants. Nous avons commencer à écrire un script en Python afin de tester cet outil. Nous espérons pouvoir affecter la métrique qui représente la réputation d&amp;rsquo;une adresse IP à partir du résultat que Google nous retourne (&lt;em&gt;phishing&lt;/em&gt;, &lt;em&gt;malware&lt;/em&gt; ou &lt;em&gt;unwanted&lt;/em&gt;) Le code est disponible directement sur &lt;a href=&#34;https://github.com/Dominionized/anonymoustre&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Il existe des APIs pour la géolocalisation d&amp;rsquo;adresses IP, tel que &lt;a href=&#34;http://freegeoip.net/&#34;&gt;freegeoip&lt;/a&gt; qui utilise la base de données &lt;a href=&#34;http://dev.maxmind.com/geoip/geoip2/geolite2/&#34;&gt;GeoLite2&lt;/a&gt; pour analyser les requêtes. Nous pensons éventuellement intégrer la géolocalisation dans le calcul de la métrique de sécurité.&lt;/p&gt;
+
+&lt;p&gt;Une liste de domaines bloqués pour spam de courriel est disponible sur le portail de &lt;a href=&#34;https://meta.wikimedia.org/wiki/Spam_blacklist&#34;&gt;Wikimedia&lt;/a&gt;. La liste est formattée sous forme d&amp;rsquo;expressions régulières, ce qui pourrait aider pour filtrer des noms de domaine.&lt;/p&gt;
+
+&lt;p&gt;Une autre &lt;em&gt;blacklist&lt;/em&gt; similaire, cette fois-ci sous forme textuelle est disponible sur &lt;a href=&#34;http://www.joewein.de/sw/spam-bl-s.htm&#34;&gt;jwSpamSpy&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Des outils semblables sont disponibles sur le portail de &lt;a href=&#34;http://www.selectrealsecurity.com/public-block-lists&#34;&gt;Select Real Security&lt;/a&gt;. Il faudra toutefois faire un tri de ces outils et vérifier qu&amp;rsquo;ils sont bel et bien fiables.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://portswigger.net/burp/&#34;&gt;BurpSuite&lt;/a&gt; pourrait être une système de test intéressant à utiliser, si nous trouvons le temps pour automatiser le logiciel. Il nous permettrait de rouler des tests sur des applications web pour trouver des failles potentielles. Si nous ne trouvons pas le temps de mettre en place un tel système, nous pourrions toujours tester la validité des certificats SSL pour les adresses IP. Cette option serait probablement plus rapide à implémenter et nous donnerais une autre métrique à prendre en compte dans le calcul de la réputation d&amp;rsquo;adresses IP.&lt;/p&gt;
+
+&lt;p&gt;Nous avons fait un essai du programme &lt;a href=&#34;https://www.paterva.com/web6/&#34;&gt;Maltego&lt;/a&gt; qui pourrait nous être utile pour faire de la collecte d&amp;rsquo;informations. Le logiciel, étant très visuel, pourrait également être utilisé comme outil de présentation (merci à François Gagnon pour la référence).&lt;/p&gt;
+
+&lt;p&gt;Nous avons d&amp;rsquo;ailleurs envoyer un message à François Gagnon en date du 11 février 2016 pour demander s&amp;rsquo;il était possible d&amp;rsquo;avoir une banque d&amp;rsquo;adresses IP avec des métadonnées.&lt;/p&gt;
+
+&lt;p&gt;Pour terminer, nous sommes en légèrement en retard présentement par rapport au plan de travail que nous avons mis en place à la première semaine du projet de recherche. Il faudra porter attention à la progression générale du projet au cours des prochains jours et trouver un moyen de corriger la situation au besoin.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Semaine 3</title>

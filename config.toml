@@ -11,7 +11,7 @@ disqusShortname = ""
 [params]
 	name = "Anonymoustre"
 	description = ""
-	bio = "Projet de recherche très épique."
+	bio = "Projet de recherche sur la réputation d'adresses IP."
 	# Enter optionally your twitter account
 	twitter = ""
 	enableRSS = false
