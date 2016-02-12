@@ -8,7 +8,7 @@ Au courant de la semaine, nous avons travaillé principalement avec l'API de Goo
 
 Il existe des APIs pour la géolocalisation d'adresses IP, tel que [freegeoip](http://freegeoip.net/) qui utilise la base de données [GeoLite2](http://dev.maxmind.com/geoip/geoip2/geolite2/) pour analyser les requêtes. Nous pensons éventuellement intégrer la géolocalisation dans le calcul de la métrique de sécurité.
 
-Une liste de domaines bloqués pour spam de courriel est disponible sur le portail de [Wikimedia](https://meta.wikimedia.org/wiki/Spam_blacklist). La liste est formattée sous forme d'expressions régulières, ce qui pourrait aider pour filtrer des noms de domaine.
+Une liste de domaines bloqués pour spam dans les courriels est disponible sur le portail de [Wikimedia](https://meta.wikimedia.org/wiki/Spam_blacklist). La liste est formattée sous forme d'expressions régulières, ce qui pourrait aider pour filtrer des noms de domaine.
 
 Une autre *blacklist* similaire, cette fois-ci sous forme textuelle est disponible sur [jwSpamSpy](http://www.joewein.de/sw/spam-bl-s.htm).
 
@@ -18,6 +18,9 @@ Des outils semblables sont disponibles sur le portail de [Select Real Security](
 
 Nous avons fait un essai du programme [Maltego](https://www.paterva.com/web6/) qui pourrait nous être utile pour faire de la collecte d'informations. Le logiciel, étant très visuel, pourrait également être utilisé comme outil de présentation (merci à François Gagnon pour la référence). 
 
-Nous avons d'ailleurs envoyer un message à François Gagnon en date du 11 février 2016 pour demander s'il était possible d'avoir une banque d'adresses IP avec des métadonnées.
+Nous avons d'ailleurs envoyé un message à François Gagnon en date du 11 février 2016 pour demander s'il était possible d'avoir une banque d'adresses IP avec des métadonnées.
 
-Pour terminer, nous sommes en légèrement en retard présentement par rapport au plan de travail que nous avons mis en place à la première semaine du projet de recherche. Il faudra porter attention à la progression générale du projet au cours des prochains jours et trouver un moyen de corriger la situation au besoin.
+Pour terminer, nous sommes légèrement en retard par rapport au plan de travail que nous avons mis en place à la première semaine du projet de recherche. Il faudra porter attention à la progression générale du projet au cours des prochains jours et trouver un moyen de corriger la situation au besoin.
+
+#### Modification (11 février 2016, à 22:24) :
+Nous avons eu la réponse de François. Selon lui, chaque métrique dans le calcul de la réputation d'une adresse IP devrait avoir sa propre banque d'adresses. De cette manière, une ou plusieurs métriques seront associées pour chaque adresse IP. Initialement, nous n'avons pas approché le problème de cette manière, mais c'est un point de vue très intéressant. François nous a également fourni dans son message un [lien](https://zeltser.com/malicious-ip-blocklists/) vers plusieurs *blocklists* que nous pourrons utiliser au cours du projet. Il propose aussi de chercher pour des listes de sites de *phishing*. 

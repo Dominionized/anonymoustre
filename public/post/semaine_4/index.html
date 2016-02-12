@@ -40,11 +40,13 @@
                     </h2>
                 </header>
                 <section id="post-body">
-                    <p>Au courant de la semaine, nous avons travaillé principalement avec l&rsquo;API de Google Safe Browsing, qui nous donne accès à un filtre pour des domaines classés comme étant malveillants. Nous avons commencer à écrire un script en Python afin de tester cet outil. Nous espérons pouvoir affecter la métrique qui représente la réputation d&rsquo;une adresse IP à partir du résultat que Google nous retourne (<em>phishing</em>, <em>malware</em> ou <em>unwanted</em>) Le code est disponible directement sur <a href="https://github.com/Dominionized/anonymoustre">GitHub</a>.</p>
+                    
+
+<p>Au courant de la semaine, nous avons travaillé principalement avec l&rsquo;API de Google Safe Browsing, qui nous donne accès à un filtre pour des domaines classés comme étant malveillants. Nous avons commencer à écrire un script en Python afin de tester cet outil. Nous espérons pouvoir affecter la métrique qui représente la réputation d&rsquo;une adresse IP à partir du résultat que Google nous retourne (<em>phishing</em>, <em>malware</em> ou <em>unwanted</em>) Le code est disponible directement sur <a href="https://github.com/Dominionized/anonymoustre">GitHub</a>.</p>
 
 <p>Il existe des APIs pour la géolocalisation d&rsquo;adresses IP, tel que <a href="http://freegeoip.net/">freegeoip</a> qui utilise la base de données <a href="http://dev.maxmind.com/geoip/geoip2/geolite2/">GeoLite2</a> pour analyser les requêtes. Nous pensons éventuellement intégrer la géolocalisation dans le calcul de la métrique de sécurité.</p>
 
-<p>Une liste de domaines bloqués pour spam de courriel est disponible sur le portail de <a href="https://meta.wikimedia.org/wiki/Spam_blacklist">Wikimedia</a>. La liste est formattée sous forme d&rsquo;expressions régulières, ce qui pourrait aider pour filtrer des noms de domaine.</p>
+<p>Une liste de domaines bloqués pour spam dans les courriels est disponible sur le portail de <a href="https://meta.wikimedia.org/wiki/Spam_blacklist">Wikimedia</a>. La liste est formattée sous forme d&rsquo;expressions régulières, ce qui pourrait aider pour filtrer des noms de domaine.</p>
 
 <p>Une autre <em>blacklist</em> similaire, cette fois-ci sous forme textuelle est disponible sur <a href="http://www.joewein.de/sw/spam-bl-s.htm">jwSpamSpy</a>.</p>
 
@@ -54,9 +56,13 @@
 
 <p>Nous avons fait un essai du programme <a href="https://www.paterva.com/web6/">Maltego</a> qui pourrait nous être utile pour faire de la collecte d&rsquo;informations. Le logiciel, étant très visuel, pourrait également être utilisé comme outil de présentation (merci à François Gagnon pour la référence).</p>
 
-<p>Nous avons d&rsquo;ailleurs envoyer un message à François Gagnon en date du 11 février 2016 pour demander s&rsquo;il était possible d&rsquo;avoir une banque d&rsquo;adresses IP avec des métadonnées.</p>
+<p>Nous avons d&rsquo;ailleurs envoyé un message à François Gagnon en date du 11 février 2016 pour demander s&rsquo;il était possible d&rsquo;avoir une banque d&rsquo;adresses IP avec des métadonnées.</p>
 
-<p>Pour terminer, nous sommes en légèrement en retard présentement par rapport au plan de travail que nous avons mis en place à la première semaine du projet de recherche. Il faudra porter attention à la progression générale du projet au cours des prochains jours et trouver un moyen de corriger la situation au besoin.</p>
+<p>Pour terminer, nous sommes légèrement en retard par rapport au plan de travail que nous avons mis en place à la première semaine du projet de recherche. Il faudra porter attention à la progression générale du projet au cours des prochains jours et trouver un moyen de corriger la situation au besoin.</p>
+
+<h4 id="modification-11-février-2016-à-22-24:b14d1cdafc7ec9d3662697f51136c0e5">Modification (11 février 2016, à 22:24) :</h4>
+
+<p>Nous avons eu la réponse de François. Selon lui, chaque métrique dans le calcul de la réputation d&rsquo;une adresse IP devrait avoir sa propre banque d&rsquo;adresses. De cette manière, une ou plusieurs métriques seront associées pour chaque adresse IP. Initialement, nous n&rsquo;avons pas approché le problème de cette manière, mais c&rsquo;est un point de vue très intéressant. François nous a également fourni dans son message un <a href="https://zeltser.com/malicious-ip-blocklists/">lien</a> vers plusieurs <em>blocklists</em> que nous pourrons utiliser au cours du projet. Il propose aussi de chercher pour des listes de sites de <em>phishing</em>.</p>
 
                 </section>
             </article>
