@@ -1,20 +1,27 @@
-import shodan
-import api_key
-import requests
-import pprint
 from functools import reduce
+import pprint
+import shodan
+import requests
+import api_key
 
 
 pp = pprint.PrettyPrinter(indent=2)
 
 def main():
     ips = get_some_ips()
+    ips = get_bad_ips()
+    pp.pprint(ips)
     google = query_google_api(ips)
     pp.pprint(google)
 
 def get_some_ips():
     req = requests.get("https://zeustracker.abuse.ch/blocklist.php?download=badips")
     return [line for line in req.text.split('\n') if line and line[0].isdigit()]
+
+def get_bad_ips():
+    with open("bad_ips.txt", "r") as file:
+        ips = list(filter(lambda line: line != '', file.read().split("\n")))
+    return ips
 
 def query_google_api(ip_list):
     url = "https://sb-ssl.google.com/safebrowsing/api/lookup"
@@ -25,6 +32,7 @@ def query_google_api(ip_list):
         "pver": "3.1"
     }
     req_body = str(len(ip_list)) + "\n" + reduce(lambda x, y: x+"\n"+y, ip_list)
+    print(req_body)
 
     r = requests.post(url, params=url_params, data=req_body)
 
