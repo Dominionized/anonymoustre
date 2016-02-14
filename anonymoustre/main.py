@@ -10,6 +10,7 @@ pp = pprint.PrettyPrinter(indent=2)
 def main():
     ips = get_some_ips()
     google = query_google_api(ips)
+    pp.pprint(google)
 
 def get_some_ips():
     req = requests.get("https://zeustracker.abuse.ch/blocklist.php?download=badips")
@@ -27,9 +28,7 @@ def query_google_api(ip_list):
 
     r = requests.post(url, params=url_params, data=req_body)
 
-    print(r.status_code)
-    print(r.text)
-
+    print("Queried Google API. Got {0} status code".format(r.status_code))
     scored_ip_list = assoc_default_score(ip_list)
 
     if r.status_code == 204:
