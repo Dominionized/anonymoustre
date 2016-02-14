@@ -13,6 +13,10 @@ def main():
     pp.pprint(ips)
     #pp.pprint(query_google_api([res['ip_str'] for res in results['matches']]))
 
+def get_some_ips():
+    req = requests.get("https://zeustracker.abuse.ch/blocklist.php?download=badips")
+    return [line for line in req.text.split('\n') if line and line[0].isdigit()]
+
 def query_google_api(ip_list):
     url = "https://sb-ssl.google.com/safebrowsing/api/lookup"
     url_params = {
@@ -29,24 +33,26 @@ def query_google_api(ip_list):
     print(r.text)
 
     if r.status_code == 204:
-        return [{"unwanted_score": 0, "malware_score": 0, "phishing_score": 0} for i in range(len(ip_list))]
+        return assoc_default_score(ip_list)
 
-def assoc_score(ip_list):
+def assoc_default_score(ip_list):
     return list(map(lambda ip: {
         "ip": ip,
         "malware_score": 100,
         "phishing_score": 100,
         "unwanted_score": 100 }, ip_list))
 
-def get_some_ips():
-    req = requests.get("https://zeustracker.abuse.ch/blocklist.php?download=badips")
-    return [line for line in req.text.split('\n') if line and line[0].isdigit()]
-
 def combine_scores(scores1, scores2):
-    for e1, e2 in zip(scores1, scores2):
-        print(e1)
-        print(e2)
-        # TODO : change this
+    return [combine_score(e1, e2) for e1,e2 in zip(scores1, scores2)]
+
+def combine_score(beg_score, score_to_add):
+    combined = beg_score
+    for key in score_to_add:
+        if key in combined:
+            combined[key] += score_to_add[key]
+        else:
+            combined[key] = score_to_add[key]
+    return combined
 
 if __name__ == "__main__":
     main()
