@@ -9,9 +9,7 @@ pp = pprint.PrettyPrinter(indent=2)
 
 def main():
     ips = get_some_ips()
-    query_google_api(ips)
-    pp.pprint(ips)
-    #pp.pprint(query_google_api([res['ip_str'] for res in results['matches']]))
+    google = query_google_api(ips)
 
 def get_some_ips():
     req = requests.get("https://zeustracker.abuse.ch/blocklist.php?download=badips")
@@ -32,8 +30,22 @@ def query_google_api(ip_list):
     print(r.status_code)
     print(r.text)
 
+    scored_ip_list = assoc_default_score(ip_list)
+
     if r.status_code == 204:
-        return assoc_default_score(ip_list)
+        return scored_ip_list
+    elif r.status_code == 200:
+        return combine_scores(scored_ip_list, [get_score_delta(score_str) for score_str in r.text.split('\n')])
+
+def get_score_delta(score_str):
+    score = {}
+    if "unwanted" in score_str:
+        score["unwanted_score"] = -10
+    elif "malware_score" in score_str:
+        score["malware_score"] = -10
+    elif "phishing_score" in score_str:
+        score["phishing_score"] = -10
+    return score
 
 def assoc_default_score(ip_list):
     return list(map(lambda ip: {
@@ -50,8 +62,6 @@ def combine_score(beg_score, score_to_add):
     for key in score_to_add:
         if key in combined:
             combined[key] += score_to_add[key]
-        else:
-            combined[key] = score_to_add[key]
     return combined
 
 if __name__ == "__main__":
