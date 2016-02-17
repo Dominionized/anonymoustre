@@ -13,7 +13,6 @@ def query_google_api(ip_list):
         "pver": "3.1"
     }
     req_body = str(len(ip_list)) + "\n" + reduce(lambda x, y: x+"\n"+y, ip_list)
-    print(req_body)
 
     r = requests.post(url, params=url_params, data=req_body)
 

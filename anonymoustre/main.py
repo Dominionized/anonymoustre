@@ -11,8 +11,6 @@ pp = pprint.PrettyPrinter(indent=2)
 
 def main():
     ips = get_some_ips()
-    ips = get_bad_ips()
-    pp.pprint(ips)
     goo = query_google_api(ips)
     pp.pprint(goo)
 
