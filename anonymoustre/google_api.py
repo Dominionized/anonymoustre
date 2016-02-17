@@ -22,15 +22,15 @@ def query_google_api(ip_list):
     if r.status_code == 204:
         return scored_ip_list
     elif r.status_code == 200:
-        return combine_scores(scored_ip_list, [get_score_delta(score_str) for score_str in r.text.split('\n')])
+        return combine_scores(scored_ip_list, [get_google_score_delta(score_str) for score_str in r.text.split('\n')])
 
 
-def get_score_delta(score_str):
+def get_google_score_delta(score_str):
     score = {}
     if "unwanted" in score_str:
         score["unwanted_score"] = -10
-    elif "malware_score" in score_str:
+    elif "malware" in score_str:
         score["malware_score"] = -10
-    elif "phishing_score" in score_str:
+    elif "phishing" in score_str:
         score["phishing_score"] = -10
     return score

@@ -4,6 +4,7 @@ import shodan
 import requests
 import api_key
 from google_api import query_google_api
+from shodan_api import query_shodan_api
 
 
 pp = pprint.PrettyPrinter(indent=2)
@@ -12,7 +13,8 @@ pp = pprint.PrettyPrinter(indent=2)
 def main():
     ips = get_some_ips()
     goo = query_google_api(ips)
-    pp.pprint(goo)
+    pp.pprint(query_shodan_api(ips))
+    return goo
 
 
 def get_some_ips():

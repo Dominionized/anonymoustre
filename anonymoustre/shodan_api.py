@@ -1,18 +1,21 @@
-import shodan as shodanapi
+import shodan
 import pprint
 from api_key import SHODAN as SHODAN_KEY
 
 
-APIError = shodanapi.APIError
 pp = pprint.PrettyPrinter(indent=2)
-shodan = shodanapi.Shodan(SHODAN_KEY)
+api = shodan.Shodan(SHODAN_KEY)
 
 
-def get_hosts_data(ips):
+def query_shodan_api(ips):
     results = []
     for ip in ips:
+        print("patatedudebifu")
         try:
-            results.append(shodan.host(ip))
+            results.append(api.host(ip))
         except shodan.APIError:
             results.append(None)
     return results
+
+def get_shodan_score_delta(score_dict):
+    raise NotImplementedError()
