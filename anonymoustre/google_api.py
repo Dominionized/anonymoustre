@@ -17,12 +17,11 @@ def query_google_api(ip_list):
     r = requests.post(url, params=url_params, data=req_body)
 
     print("Queried Google API. Got {0} status code".format(r.status_code))
-    scored_ip_list = assoc_default_score(ip_list)
 
     if r.status_code == 204:
-        return scored_ip_list
+        return ip_list
     elif r.status_code == 200:
-        return combine_scores(scored_ip_list, [get_google_score_delta(score_str) for score_str in r.text.split('\n')])
+        return [get_google_score_delta(score_str) for score_str in r.text.split('\n')]
 
 
 def get_google_score_delta(score_str):

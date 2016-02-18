@@ -1,20 +1,32 @@
 from functools import reduce
 import pprint
+import time
 import shodan
 import requests
 import api_key
 from google_api import query_google_api
 from shodan_api import query_shodan_api
+from utils import assoc_default_score, combine_scores
 
 
 pp = pprint.PrettyPrinter(indent=2)
 
 
 def main():
+    start_time = time.time()
+
     ips = get_some_ips()
-    goo = query_google_api(ips)
-    pp.pprint(query_shodan_api(ips))
-    return goo
+    scored_ips = assoc_default_score(ips)
+
+    shodan_scores = query_shodan_api(ips)
+    google_scores = query_google_api(ips)
+
+    results = reduce(combine_scores, [scored_ips, shodan_scores, google_scores])
+    pp.pprint(results)
+
+    print("--------- %s seconds -------" % (time.time() - start_time))
+
+    return results
 
 
 def get_some_ips():

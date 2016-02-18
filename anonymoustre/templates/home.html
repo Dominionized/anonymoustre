@@ -4,6 +4,7 @@
         <th>Malware</th>
         <th>Phishing</th>
         <th>Unwanted</th>
+        <th>Unsecure</th>
     </tr>
 {% for ip in ips %}
     <tr>
@@ -11,6 +12,7 @@
         <td class="colored">{{ip['malware_score']}}</td>
         <td class="colored">{{ip['phishing_score']}}</td>
         <td class="colored">{{ip['unwanted_score']}}</td>
+        <td class="colored">{{ip['unsecure_score']}}</td>
     </tr>
 {% endfor %}
 </table>

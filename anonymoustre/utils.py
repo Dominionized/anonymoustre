@@ -3,7 +3,8 @@ def assoc_default_score(ip_list):
         "ip": ip,
         "malware_score": 100,
         "phishing_score": 100,
-        "unwanted_score": 100 }, ip_list))
+        "unwanted_score": 100,
+        "unsecure_score": 100}, ip_list))
 
 
 def combine_scores(scores1, scores2):
