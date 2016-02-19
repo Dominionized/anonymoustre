@@ -6,8 +6,59 @@
     <description>Recent content on Anonymoustre</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr-CA</language>
-    <lastBuildDate>Thu, 11 Feb 2016 16:45:38 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 17 Feb 2016 10:41:25 -0500</lastBuildDate>
     <atom:link href="http://dominionized.github.io/anonymoustre/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Semaine 5</title>
+      <link>http://dominionized.github.io/anonymoustre/post/semaine_5/</link>
+      <pubDate>Wed, 17 Feb 2016 10:41:25 -0500</pubDate>
+      
+      <guid>http://dominionized.github.io/anonymoustre/post/semaine_5/</guid>
+      <description>&lt;p&gt;Nous avons principalement fait de la recherche d&amp;rsquo;informations sur les DNSBL/RBL (Realtime blacklists) afin d&amp;rsquo;avoir des filtres de &lt;em&gt;spam&lt;/em&gt; pour les adresses IP. Il existe plusieurs services en ligne qui font l&amp;rsquo;aggrégation de &lt;em&gt;blacklists&lt;/em&gt;, tels que &lt;a href=&#34;http://www.urlvoid.com/&#34;&gt;URLVoid&lt;/a&gt; (IPVoid) et &lt;a href=&#34;http://mxtoolbox.com/&#34;&gt;MxToolBox&lt;/a&gt;. Il reste à vérifier que les résultats retournés par ces services sont fiables.&lt;/p&gt;
+
+&lt;p&gt;Il existe aussi &lt;a href=&#34;http://www.sorbs.net/&#34;&gt;SORBS&lt;/a&gt;, &lt;a href=&#34;http://www.aspews.org/&#34;&gt;ASPEWS&lt;/a&gt; et &lt;a href=&#34;https://www.spamhaus.org/&#34;&gt;Spamhaus ZEN&lt;/a&gt; qui sont des DNSBL populaires et gratuites. Spamhaus est une liste intéressante, puisqu&amp;rsquo;elle est aussi actualisée avec les adresses IP de &lt;em&gt;malwares&lt;/em&gt;. Ces listes sont toutefois légèrement plus difficiles à accéder via Python, puisqu&amp;rsquo;elle demandent d&amp;rsquo;être intérogées via une requête DNS.&lt;/p&gt;
+
+&lt;p&gt;L&amp;rsquo;utilitaire &lt;code&gt;dig&lt;/code&gt; inclus dans la suite d&amp;rsquo;outils &lt;a href=&#34;https://www.isc.org/downloads/bind/&#34;&gt;BIND&lt;/a&gt; permet de faire une telle requête.&lt;/p&gt;
+
+&lt;p&gt;Exemple (en ligne de commande) :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;dig +short 156.142.77.110.spam.dnsbl.sorbs.net
+// 127.0.0.6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Le résultat &lt;code&gt;127.0.0.6&lt;/code&gt; indique que l&amp;rsquo;adresse IP &lt;code&gt;110.77.142.156&lt;/code&gt; dont les octets ont été renversés dans la requête à l&amp;rsquo;adresse &lt;code&gt;156.142.77.110.spam.dnsbl.sorbs.net&lt;/code&gt; est considéré comme étant liée à un hôte qui envoie du &lt;em&gt;spam&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Également, nous avons étendu notre programme de filtrage d&amp;rsquo;adresses IP avec un module qui se connecte à l&amp;rsquo;API de &lt;a href=&#34;https://www.shodan.io&#34;&gt;Shodan.IO&lt;/a&gt;. Cela nous permet de faire la collecte de métadonnées sur des adresses IP (géolocalisation, fournisseur d&amp;rsquo;accès à internet, WHOIS, etc.) et des données plus techniques, telles que les services offerts et les ports ouverts sur le point d&amp;rsquo;accès. Nous allons donc délaisser plusieurs options que nous avons exploré auparavant, puisque Shodan est programmable, gratuit et qu&amp;rsquo;il donne un rapport assez complet d&amp;rsquo;une point d&amp;rsquo;accès.&lt;/p&gt;
+
+&lt;p&gt;Nous vérifions aussi les dates d&amp;rsquo;expiration des certificats SSL pour les services offerts par une adresse IP avec l&amp;rsquo;API de Shodan.IO. Bien sûr, cette vérification est encore trop minimale pour réellement vérifier la validité d&amp;rsquo;un certificat SSL. Plusieurs autres facteurs pourraient être vérifiés :&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;les authorités de certification;&lt;/li&gt;
+&lt;li&gt;le &lt;em&gt;Common Name&lt;/em&gt;;&lt;/li&gt;
+&lt;li&gt;la function de hashage utilisée;&lt;/li&gt;
+&lt;li&gt;la taille de la paire de clés RSA (2048 bits ou plus).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Dans le cadre de ce projet, nous n&amp;rsquo;aurons toutefois pas le temps d&amp;rsquo;ajouter ces facteurs de sécurité. Nous n&amp;rsquo;aurons également pas le temps d&amp;rsquo;ajouter BurpSuite en tant qu&amp;rsquo;outil de vérification de sécurité Web à notre système.&lt;/p&gt;
+
+&lt;p&gt;Dans l&amp;rsquo;espoir d&amp;rsquo;avoir accès à une plateforme qui fait l&amp;rsquo;aggrégation de &lt;em&gt;blacklists&lt;/em&gt; de serveur mail, nous avons contacté un Chad James, un représentant chez MxToolBox, en espérant obtenir un accès à leur interface de programmation. C&amp;rsquo;est un succès ! Nous pouvons maintenant intégrer leur plateforme à notre projet. Le nombre de requêtes par jour est toutefois limité à 10.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://dominionized.github.io/anonymoustre/anonymoustre/files/MXToolBox_Email.pdf&#34;&gt;Cliquer ici pour voir la conversation.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Nous avons maintenant un service web afin de présenter visuellement notre outil. Des scores pour les catégories &lt;em&gt;malware&lt;/em&gt;, &lt;em&gt;phishing&lt;/em&gt;, &lt;em&gt;unwanted&lt;/em&gt; et &lt;em&gt;unsecure (SSL)&lt;/em&gt; sont disponibles. Nous avons donc décider de laisser Maltego de côté.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://dominionized.github.io/anonymoustre/anonymoustre/files/anon_web.png&#34; alt=&#34;Anonymoustre platform&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;La première adresse IP a plusieurs services disponibles, qui ont tous un certificat SSL expiré.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Il reste donc à ajouter les &lt;em&gt;blacklists&lt;/em&gt; à l&amp;rsquo;algorithme de calcul de réputation de notre outil, pour obtenir des résultats plus précis au niveau du phishing et d&amp;rsquo;une catégorie qui serait le &lt;em&gt;spam&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Après cela, il faudra penser à finaliser le projet de recherche et préparer un média de présentation.&lt;/p&gt;
+
+&lt;p&gt;Après une discussion avec François mercredi passé, nous avons décidé d&amp;rsquo;ajouter du contenu à notre présentation qui n&amp;rsquo;est pas lié à notre sujet de recherche. Nous parlerons de Shodan.IO comme engin de recherche pour les &lt;a href=&#34;http://globalnews.ca/news/2478442/shodan-search-engine-browses-vulnerable-baby-monitors-webcams/&#34;&gt;caméras de sécurité non-sécurisées&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Semaine 4</title>

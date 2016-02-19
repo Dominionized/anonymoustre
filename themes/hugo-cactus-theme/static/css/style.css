@@ -181,7 +181,7 @@ a,
 	transition: all 0.15s ease;
 }
 
-ul 	{ margin:0; padding:0; }
+ul 	{ margin: 0 0 20px 0; padding:0; }
 li	{ list-style-type:circle; list-style-position:inside; }
 
 /* Line Height */
@@ -295,6 +295,8 @@ hr {
 }
 
 span.code { font-family:Menlo, Monaco, Courier; background-color:#EEE; font-size:14px; }
+
+code { font-family: Melo, Monaco, Courier; }
 
 pre	{
 	font-family:Menlo, Monaco, Courier;

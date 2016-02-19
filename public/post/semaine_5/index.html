@@ -1,0 +1,188 @@
+    <!DOCTYPE html>
+<html lang="fr-CA">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Anonymoustre">
+		<meta name="description" content="">
+		<meta name="generator" content="Hugo 0.15" />
+		<title>Semaine 5 &middot; Anonymoustre</title>
+		<link rel="shortcut icon" href="http://dominionized.github.io/anonymoustre/images/favicon.ico">
+		<link rel="stylesheet" href="http://dominionized.github.io/anonymoustre/css/style.css">
+		<link rel="stylesheet" href="http://dominionized.github.io/anonymoustre/css/highlight.css">
+		<link rel="stylesheet" href="http://dominionized.github.io/anonymoustre/css/monosocialiconsfont.css">
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='http://dominionized.github.io/anonymoustre/'> <span class="arrow">←</span>Accueil</a>
+	
+
+	
+		<a href='http://dominionized.github.io/anonymoustre/about'>À propos</a>
+	
+
+	
+</nav>
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>Semaine 5</h1>
+                    <h2 class="headline">
+                        17
+                        février
+                        2016
+                    </h2>
+                </header>
+                <section id="post-body">
+                    <p>Nous avons principalement fait de la recherche d&rsquo;informations sur les DNSBL/RBL (Realtime blacklists) afin d&rsquo;avoir des filtres de <em>spam</em> pour les adresses IP. Il existe plusieurs services en ligne qui font l&rsquo;aggrégation de <em>blacklists</em>, tels que <a href="http://www.urlvoid.com/">URLVoid</a> (IPVoid) et <a href="http://mxtoolbox.com/">MxToolBox</a>. Il reste à vérifier que les résultats retournés par ces services sont fiables.</p>
+
+<p>Il existe aussi <a href="http://www.sorbs.net/">SORBS</a>, <a href="http://www.aspews.org/">ASPEWS</a> et <a href="https://www.spamhaus.org/">Spamhaus ZEN</a> qui sont des DNSBL populaires et gratuites. Spamhaus est une liste intéressante, puisqu&rsquo;elle est aussi actualisée avec les adresses IP de <em>malwares</em>. Ces listes sont toutefois légèrement plus difficiles à accéder via Python, puisqu&rsquo;elle demandent d&rsquo;être intérogées via une requête DNS.</p>
+
+<p>L&rsquo;utilitaire <code>dig</code> inclus dans la suite d&rsquo;outils <a href="https://www.isc.org/downloads/bind/">BIND</a> permet de faire une telle requête.</p>
+
+<p>Exemple (en ligne de commande) :</p>
+
+<pre><code class="language-shell">dig +short 156.142.77.110.spam.dnsbl.sorbs.net
+// 127.0.0.6
+</code></pre>
+
+<p>Le résultat <code>127.0.0.6</code> indique que l&rsquo;adresse IP <code>110.77.142.156</code> dont les octets ont été renversés dans la requête à l&rsquo;adresse <code>156.142.77.110.spam.dnsbl.sorbs.net</code> est considéré comme étant liée à un hôte qui envoie du <em>spam</em>.</p>
+
+<p>Également, nous avons étendu notre programme de filtrage d&rsquo;adresses IP avec un module qui se connecte à l&rsquo;API de <a href="https://www.shodan.io">Shodan.IO</a>. Cela nous permet de faire la collecte de métadonnées sur des adresses IP (géolocalisation, fournisseur d&rsquo;accès à internet, WHOIS, etc.) et des données plus techniques, telles que les services offerts et les ports ouverts sur le point d&rsquo;accès. Nous allons donc délaisser plusieurs options que nous avons exploré auparavant, puisque Shodan est programmable, gratuit et qu&rsquo;il donne un rapport assez complet d&rsquo;une point d&rsquo;accès.</p>
+
+<p>Nous vérifions aussi les dates d&rsquo;expiration des certificats SSL pour les services offerts par une adresse IP avec l&rsquo;API de Shodan.IO. Bien sûr, cette vérification est encore trop minimale pour réellement vérifier la validité d&rsquo;un certificat SSL. Plusieurs autres facteurs pourraient être vérifiés :</p>
+
+<ul>
+<li>les authorités de certification;</li>
+<li>le <em>Common Name</em>;</li>
+<li>la function de hashage utilisée;</li>
+<li>la taille de la paire de clés RSA (2048 bits ou plus).</li>
+</ul>
+
+<p>Dans le cadre de ce projet, nous n&rsquo;aurons toutefois pas le temps d&rsquo;ajouter ces facteurs de sécurité. Nous n&rsquo;aurons également pas le temps d&rsquo;ajouter BurpSuite en tant qu&rsquo;outil de vérification de sécurité Web à notre système.</p>
+
+<p>Dans l&rsquo;espoir d&rsquo;avoir accès à une plateforme qui fait l&rsquo;aggrégation de <em>blacklists</em> de serveur mail, nous avons contacté un Chad James, un représentant chez MxToolBox, en espérant obtenir un accès à leur interface de programmation. C&rsquo;est un succès ! Nous pouvons maintenant intégrer leur plateforme à notre projet. Le nombre de requêtes par jour est toutefois limité à 10.</p>
+
+<p><a href="/anonymoustre/files/MXToolBox_Email.pdf">Cliquer ici pour voir la conversation.</a></p>
+
+<p>Nous avons maintenant un service web afin de présenter visuellement notre outil. Des scores pour les catégories <em>malware</em>, <em>phishing</em>, <em>unwanted</em> et <em>unsecure (SSL)</em> sont disponibles. Nous avons donc décider de laisser Maltego de côté.</p>
+
+<p><img src="/anonymoustre/files/anon_web.png" alt="Anonymoustre platform" /></p>
+
+<p><em>La première adresse IP a plusieurs services disponibles, qui ont tous un certificat SSL expiré.</em></p>
+
+<p>Il reste donc à ajouter les <em>blacklists</em> à l&rsquo;algorithme de calcul de réputation de notre outil, pour obtenir des résultats plus précis au niveau du phishing et d&rsquo;une catégorie qui serait le <em>spam</em>.</p>
+
+<p>Après cela, il faudra penser à finaliser le projet de recherche et préparer un média de présentation.</p>
+
+<p>Après une discussion avec François mercredi passé, nous avons décidé d&rsquo;ajouter du contenu à notre présentation qui n&rsquo;est pas lié à notre sujet de recherche. Nous parlerons de Shodan.IO comme engin de recherche pour les <a href="http://globalnews.ca/news/2478442/shodan-search-engine-browses-vulnerable-baby-monitors-webcams/">caméras de sécurité non-sécurisées</a>.</p>
+
+                </section>
+            </article>
+            <footer id="post-meta" class="clearfix">
+                
+                        <img class="avatar" src="http://dominionized.github.io/anonymoustre/images/avatar.svg">
+                        <div>
+                            <span class="dark">Anonymoustre</span>
+                            <span></span>
+                        </div>
+                    
+                <section id="sharing">
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fdominionized.github.io%2fanonymoustre%2fpost%2fsemaine_5%2f - Semaine%205 "><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Partager</span>
+</a>
+
+                </section>
+            </footer>
+
+            
+
+            <ul id="post-list" class="archive readmore">
+    <h3>En savoir plus</h3>
+    
+    
+        
+        <li>
+            <a href="http://dominionized.github.io/anonymoustre/post/semaine_5/">Semaine 5
+            	<aside class="dates">
+            		17
+            		février
+            		2016
+            	</aside>
+            </a>
+        </li>
+        
+   
+    
+        
+        <li>
+            <a href="http://dominionized.github.io/anonymoustre/post/semaine_4/">Semaine 4
+            	<aside class="dates">
+            		11
+            		février
+            		2016
+            	</aside>
+            </a>
+        </li>
+        
+   
+    
+        
+        <li>
+            <a href="http://dominionized.github.io/anonymoustre/post/semaine_3/">Semaine 3
+            	<aside class="dates">
+            		4
+            		février
+            		2016
+            	</aside>
+            </a>
+        </li>
+        
+   
+    
+        
+   
+    
+        
+        <li>
+            <a href="http://dominionized.github.io/anonymoustre/post/semaine_2/">Semaine 2
+            	<aside class="dates">
+            		28
+            		janvier
+            		2016
+            	</aside>
+            </a>
+        </li>
+        
+   
+</ul>
+            <footer id="footer">
+    <p class="small">
+    
+        © Copyright 2016 Anonymoustre
+    
+    </p>
+</footer>
+
+        </section>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://dominionized.github.io/anonymoustre/js/main.js"></script>
+<script src="http://dominionized.github.io/anonymoustre/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+    </body>
+</html>
