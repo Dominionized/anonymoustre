@@ -1,0 +1,43 @@
+<style>
+ table {
+     border-collapse: collapse;
+ }
+ table * {
+     padding: 3px;
+ }
+
+ td.colored {
+     text-align: center;
+ }
+</style>
+<table>
+    <tr>
+        <th>IP</th>
+        <th>Malware</th>
+        <th>Phishing</th>
+        <th>Unwanted</th>
+        <th>Unsecure</th>
+    </tr>
+{% for ip in ips %}
+    <tr>
+        <td>{{ip['ip']}}</td>
+        <td class="colored">{{ip['malware_score']}}</td>
+        <td class="colored">{{ip['phishing_score']}}</td>
+        <td class="colored">{{ip['unwanted_score']}}</td>
+        <td class="colored">{{ip['unsecure_score']}}</td>
+    </tr>
+{% endfor %}
+</table>
+
+<script>
+    function getColor(value) {
+        //value from 0 to 1
+        var hue=(((value/100))*120).toString(10);
+        return ["hsl(",hue,",100%,50%)"].join("");
+    }
+
+    coloredCells = document.getElementsByClassName("colored");
+    for (var i = 0; i < coloredCells.length; i++) {
+        coloredCells[i].style.backgroundColor = getColor(parseInt(coloredCells[i].innerHTML));
+    }
+</script>
