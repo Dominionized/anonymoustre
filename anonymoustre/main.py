@@ -24,9 +24,9 @@ def main():
     google_scores = query_google_api(ips)
 
     # Limited number of requests... Be careful
-    mx_toolbox_scores = query_mxtoolbox_api(ips)
+    # mx_toolbox_scores = query_mxtoolbox_api(ips)
 
-    results = reduce(combine_scores, [scored_ips, shodan_scores, google_scores, mx_toolbox_scores])
+    results = reduce(combine_scores, [scored_ips, shodan_scores, google_scores])
     pp.pprint(results)
 
     print("--------- %s seconds -------" % (time.time() - start_time))
