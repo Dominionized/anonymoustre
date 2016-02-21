@@ -1,0 +1,18 @@
+#+TITLE: Réputation d'adresses IP
+#+AUTHOR: Anthony Vallée et Dominique Bégin
+#+EMAIL: 
+#+OPTIONS: num:nil email:nil
+* Réputation ?
+** Système de scores
+4 scores :
+- Malware
+- Phishing
+- Unwanted
+- Spam (email)
+** Différentes sources
+- Shodan
+- Google Safe Browsing
+- MX Toolbox
+- Blacklists email
+* Étapes
+- 
