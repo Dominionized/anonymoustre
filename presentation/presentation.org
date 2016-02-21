@@ -1,10 +1,15 @@
 #+TITLE: Réputation d'adresses IP
 #+AUTHOR: Anthony Vallée et Dominique Bégin
+<<<<<<< HEAD
 #+DESCRIPTION: Équipe Anonymoustre
 #+EMAIL: 
 #+OPTIONS: num:nil email:nil toc:nil
 #+REVEAL_THEME: hacker
 #+REVEAL_TRANS: fade
+=======
+#+EMAIL: 
+#+OPTIONS: num:nil email:nil
+>>>>>>> 98aaa7758aa28e144776e154e1f6de2650bf572b
 * Réputation ?
 ** Système de scores
 4 scores :
@@ -13,11 +18,16 @@
 - Unwanted
 - Spam (email)
 ** Différentes sources
+<<<<<<< HEAD
 - Shodan.IO
+=======
+- Shodan
+>>>>>>> 98aaa7758aa28e144776e154e1f6de2650bf572b
 - Google Safe Browsing
 - MX Toolbox
 - Blacklists email
 * Étapes
+<<<<<<< HEAD
 #+ATTR_REVEAL: :frag (appear)
 - Avancement lent au début
 - Recherche de blacklists
@@ -35,3 +45,6 @@
 * Conclusion
 - Expérience intéressante
 - Réutilisable
+=======
+- 
+>>>>>>> 98aaa7758aa28e144776e154e1f6de2650bf572b
