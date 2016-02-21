@@ -19,7 +19,7 @@ def main():
 
     # No more than 10 requests
     ips = get_bad_ips()[:5]
-    scored_ips = assoc_default_scores(ips)
+    scored_ips = assoc_default_score(ips)
 
     shodan_scores = query_shodan_api(ips)
     google_scores = query_google_api(ips)
