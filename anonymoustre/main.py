@@ -7,6 +7,7 @@ import api_key
 from google_api import query_google_api
 from shodan_api import query_shodan_api
 from mxtoolbox_api import query_mxtoolbox_api
+from dnsbl import query_dnsbl_list
 from utils import assoc_default_score, combine_scores
 
 
@@ -17,16 +18,16 @@ def main():
     start_time = time.time()
 
     # No more than 10 requests
-    ips = ['103.245.153.70']
+    ips = get_bad_ips()[:5]
     scored_ips = assoc_default_score(ips)
 
     shodan_scores = query_shodan_api(ips)
     google_scores = query_google_api(ips)
-
+    dnsbl_scores = query_dnsbl_list(ips)
     # Limited number of requests... Be careful
-    mx_toolbox_scores = query_mxtoolbox_api(ips)
+    # mx_toolbox_scores = query_mxtoolbox_api(ips)
 
-    results = reduce(combine_scores, [scored_ips, shodan_scores, google_scores, mx_toolbox_scores])
+    results = reduce(combine_scores, [scored_ips, shodan_scores, google_scores, dnsbl_scores])
     pp.pprint(results)
 
     print("--------- %s seconds -------" % (time.time() - start_time))

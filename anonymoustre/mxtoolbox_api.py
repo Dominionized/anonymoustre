@@ -3,7 +3,7 @@ import requests
 from api_key import MX_TOOL_BOX
 
 LOOKUP_URI = 'https://mxtoolbox.com/api/v1/lookup/'
-FAIL_FACTOR = -10
+FAIL_FACTOR = -15
 
 
 def query_mxtoolbox_api(ips):
