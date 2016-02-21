@@ -8,7 +8,7 @@ from google_api import query_google_api
 from shodan_api import query_shodan_api
 from mxtoolbox_api import query_mxtoolbox_api
 from dnsbl import query_dnsbl_list
-from utils import assoc_default_score, combine_scores
+from utils import assoc_default_scores, combine_scores
 
 
 pp = pprint.PrettyPrinter(indent=2)
