@@ -8,7 +8,7 @@ from google_api import query_google_api
 from shodan_api import query_shodan_api
 from mxtoolbox_api import query_mxtoolbox_api
 from dnsbl import query_dnsbl_list
-from utils import assoc_default_score, combine_scores
+from utils import assoc_default_scores, combine_scores
 
 
 pp = pprint.PrettyPrinter(indent=2)
@@ -18,8 +18,8 @@ def main():
     start_time = time.time()
 
     # No more than 10 requests
-    ips = get_bad_ips()
-    scored_ips = assoc_default_score(ips)
+    ips = get_bad_ips()[:5]
+    scored_ips = assoc_default_scores(ips)
 
     shodan_scores = query_shodan_api(ips)
     google_scores = query_google_api(ips)

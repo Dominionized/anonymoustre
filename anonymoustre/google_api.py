@@ -1,7 +1,7 @@
 import api_key
 from functools import reduce
 import requests
-from utils import assoc_default_score, combine_scores
+from utils import assoc_default_scores, combine_scores, assoc_zero_scores
 
 
 def query_google_api(ip_list):
@@ -19,7 +19,7 @@ def query_google_api(ip_list):
     print("Queried Google API. Got {0} status code".format(r.status_code))
 
     if r.status_code == 204:
-        return ip_list
+        return assoc_zero_scores(ip_list)
     elif r.status_code == 200:
         return [get_google_score_delta(score_str) for score_str in r.text.split('\n')]
 
