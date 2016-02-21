@@ -3,40 +3,26 @@ from IPy import IP
 DEFAULT_SCORE = 100
 
 
-def assoc_default_scores(ip_list):
-    return list(map(assoc_default_score, ip_list))
-
-def assoc_default_score(ip):
-    return {
+def assoc_default_score(ip_list):
+    return list(map(lambda ip: {
         "ip": ip,
         "malware_score": DEFAULT_SCORE,
         "phishing_score": DEFAULT_SCORE,
         "unwanted_score": DEFAULT_SCORE,
         "unsecure_score": DEFAULT_SCORE,
-        "spam_score": DEFAULT_SCORE
-    }
+        "spam_score": DEFAULT_SCORE}, ip_list))
 
-def assoc_zero_scores(ip_list):
-    return list(map(lambda ip: {
-        "ip": ip,
-        "malware_score": 0,
-        "phishing_score": 0,
-        "unwanted_score": 0,
-        "unsecure_score": 0,
-        "spam_score": 0
-    }, ip_list))
+
 def combine_scores(scores1, scores2):
     return [combine_score(e1, e2) for e1, e2 in zip(scores1, scores2)]
 
 
 def combine_score(beg_score, score_to_add):
-    return {key: beg_score[key] + val for key, val in score_to_add.items() if key in beg_score}
-    # This ^
-    # combined = beg_score
-    # for key in score_to_add:
-    #     if key in combined:
-    #         combined[key] += score_to_add[key]
-    # return combined
+    combined = beg_score
+    for key in score_to_add:
+        if key in combined:
+            combined[key] += score_to_add[key]
+    return combined
 
 
 def validate_IP(ip):
