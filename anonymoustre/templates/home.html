@@ -21,7 +21,7 @@
     </tr>
 {% for ip in ips %}
     <tr>
-        <td><a href="https://www.shodan.io/host/{{ip['ip']}}">{{ip['ip']}}</a></td>
+        <td><a target="_blank" href="https://www.shodan.io/host/{{ip['ip']}}">{{ip['ip']}}</a></td>
         <td class="colored">{{ip['malware_score']}}</td>
         <td class="colored">{{ip['phishing_score']}}</td>
         <td class="colored">{{ip['unwanted_score']}}</td>

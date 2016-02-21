@@ -6,7 +6,7 @@ from api_key import SHODAN as SHODAN_KEY
 from utils import combine_scores
 
 
-EXPIRED_FACTOR = -10
+EXPIRED_FACTOR = -25
 
 pp = pprint.PrettyPrinter(indent=2)
 api = shodan.Shodan(SHODAN_KEY)
