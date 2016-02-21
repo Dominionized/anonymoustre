@@ -18,7 +18,7 @@ def main():
     start_time = time.time()
 
     # No more than 10 requests
-    ips = get_bad_ips()[:5]
+    ips = get_bad_ips()
     scored_ips = assoc_default_score(ips)
 
     shodan_scores = query_shodan_api(ips)

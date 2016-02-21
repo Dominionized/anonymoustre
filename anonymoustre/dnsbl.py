@@ -31,16 +31,13 @@ def create_dns_request_uri(reversed_ip, dnsbl_hostname):
 def dnsbl_request(ip, dnsbl):
     uri = create_dns_request_uri(ip['reversed'], dnsbl['hostname'])
     try:
-        # print('Current URI is: {0}'.format(uri))
         response = socket.gethostbyname(uri)
-        # print('Response for {0} on {1} is: {2}'.format(ip['ip'], dnsbl['name'], response))
         for response_code in dnsbl['codes']:
             if response_code in response:
                 dnsbl_name = dnsbl['name']
                 ip['data'][dnsbl_name] = True
                 ip['failed'] += 1
     except socket.error:
-        # print('An exception occured: {0}'.format(err))
         pass
 
 
