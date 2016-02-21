@@ -1,7 +1,10 @@
 #+TITLE: Réputation d'adresses IP
 #+AUTHOR: Anthony Vallée et Dominique Bégin
+#+DESCRIPTION: Équipe Anonymoustre
 #+EMAIL: 
-#+OPTIONS: num:nil email:nil
+#+OPTIONS: num:nil email:nil toc:nil
+#+REVEAL_THEME: hacker
+#+REVEAL_TRANS: fade
 * Réputation ?
 ** Système de scores
 4 scores :
@@ -10,9 +13,25 @@
 - Unwanted
 - Spam (email)
 ** Différentes sources
-- Shodan
+- Shodan.IO
 - Google Safe Browsing
 - MX Toolbox
 - Blacklists email
 * Étapes
-- patate
+#+ATTR_REVEAL: :frag (appear)
+- Avancement lent au début
+- Recherche de blacklists
+- Combinaison de toutes les sources en 4 scores
+- Affichage dans une page Web
+* Contexte
+- Stage d'Anthony
+- Laboratoire de sécurité informatique
+- De plus en plus d'activités malveillantes sur Internet
+* Difficultés
+- Modélisation d'un score
+- Faire requêtes DNS blacklists
+- Trouver des adresses IP malveillantes pour tester
+* Démo
+* Conclusion
+- Expérience intéressante
+- Réutilisable
