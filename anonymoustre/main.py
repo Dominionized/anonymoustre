@@ -18,7 +18,7 @@ def main():
     start_time = time.time()
 
     # No more than 10 requests
-    ips = get_bad_ips()[:5]
+    ips = get_some_ips()[:2]
     scored_ips = assoc_default_score(ips)
 
     shodan_scores = query_shodan_api(ips)
@@ -27,7 +27,7 @@ def main():
     # Limited number of requests... Be careful
     # mx_toolbox_scores = query_mxtoolbox_api(ips)
 
-    results = reduce(combine_scores, [scored_ips, shodan_scores, google_scores, dnsbl_scores])
+    results = reduce(combine_scores, [scored_ips, shodan_scores, google_scores])
     pp.pprint(results)
 
     print("--------- %s seconds -------" % (time.time() - start_time))

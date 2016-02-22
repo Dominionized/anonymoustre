@@ -14,6 +14,7 @@ api = shodan.Shodan(SHODAN_KEY)
 
 def query_shodan_api(ips):
     pool = Pool(processes=48)
+    print("Querying Shodan API")
     return list(pool.map(get_shodan_score_delta, ips))
 
 
