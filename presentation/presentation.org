@@ -11,6 +11,7 @@
 - Malware
 - Phishing
 - Unwanted
+- Unsecure
 - Spam (email)
 ** Différentes sources
 - Shodan.IO

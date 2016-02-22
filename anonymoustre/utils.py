@@ -36,10 +36,6 @@ def combine_scores(scores1, scores2):
 
 
 def combine_score(beg_score, score_to_add):
-    print("Combining")
-    print(beg_score)
-    print(score_to_add)
-    print("-----------------------------------")
     combined = beg_score
     for key in score_to_add:
         if key in combined:
